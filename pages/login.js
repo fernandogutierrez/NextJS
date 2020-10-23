@@ -4,9 +4,9 @@ const IndexPage = () =>{
     return (
         <div className="container" id="centered">
           <label className="element">Email address </label> 
-          <input className="element" placeholder="Enter username" />
+          <input className="element" placeholder="Enter email" type="email" required/>
           <label className="element" >Password </label>
-          <input className="element" placeholder="Enter password" type="password"/>
+          <input className="element" placeholder="Enter password" type="password" required/>
           <button>Log In</button>
 
           <style jsx>{`
@@ -19,7 +19,7 @@ const IndexPage = () =>{
             margin-top: 10px;
             height:20px;
             width:100px;
-            margin-left: 50px;
+            margin-left: 1px;
           }
           #centered{
             position: fixed;
@@ -31,8 +31,8 @@ const IndexPage = () =>{
           .container {
             border-radius: 25px;
             border: 10px solid #034f84;
-            padding: 10px; 
-            width: 200px;
+            padding: 10px;
+            width: 400px;
             display: flex;
             flex-direction: column;
             align-items: left;
