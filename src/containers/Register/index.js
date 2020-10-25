@@ -1,11 +1,51 @@
 import 'antd/dist/antd.css';
-import React from 'react';
-import { Form, Input, Button, Checkbox } from 'antd';
+import React, { useEffect,useState } from 'react';
+import { useRouter } from 'next/router';
+import { SmileOutlined } from '@ant-design/icons';
+import { Form, Input, Button, Checkbox, notification } from 'antd';
 
-const Register = () =>{
+const tailLayout = {
+  wrapperCol: {
+    offset: 8,
+    span: 16,
+  },
+};
+
+const Register = ( {name = "/register"} ) =>{   
+  const router = useRouter();
+  const [pageState, setPageState] = useState({ name });
+
+  useEffect(() => {
+    console.log("useEffect")
+    initialState();
+      return () =>    {
+          console.log(`Page: ${router.route} was changed!`);
+        }
+  }, []);
+
+  const initialState = async () =>{
+      setPageState({ name: router.route });
+  }
+  console.log(`Page loaded: ${router.route}!`);
+  console.log(pageState);
+
+  const goBack = () => {
+      router.push("/login");
+  }
 
   const onFinish = (values) => {
-    console.log('Success:', values);
+    console.log('Success:', values.firstName);
+
+    notification.open({
+      message: 'Data inserted in FORM:',
+      description:
+        `FirstName: ${values.firstName}
+         LastName: ${values.LastName}
+         Age: ${values.Age}
+         EmailAddress: ${values.EmailAddress}
+         Password: ${values.Password}`,
+      icon: <SmileOutlined style={{ color: '#108ee9' }} />,
+    });
   };
 
   return (
@@ -35,9 +75,12 @@ const Register = () =>{
         <Checkbox>Remember me</Checkbox>
       </Form.Item>
 
-      <Form.Item>
+      <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit">
           Submit
+        </Button>
+        <Button htmlType="button" onClick={goBack}>
+          Go Back
         </Button>
       </Form.Item>
     </Form>

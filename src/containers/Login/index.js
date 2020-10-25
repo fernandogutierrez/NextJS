@@ -2,17 +2,10 @@ import React, { useEffect,useState } from 'react';
 import { Button, Input } from 'antd';
 import { useRouter } from 'next/router';
 
-const fetch = {
-    status: 200,
-    body: {
-        name: "Daniel",
-        age: 26
-    }
-}
 
-const Login = ({ name = "Fernando"} ) =>{
+const Login = ({ name = "/login" }) =>{
     const router = useRouter();
-    const [state, setState] = useState({ name });
+    const [pageState, setPageState] = useState({ name });
 
     useEffect(() => {
         console.log("useEffect")
@@ -23,10 +16,10 @@ const Login = ({ name = "Fernando"} ) =>{
     }, []);
 
     const initialState = async () =>{
-        setState({ name: fetch.body.name });
+        setPageState({ name: router.route });
     }
-    console.log(`Page: loaded ${router.route}!`);
-    console.log(state);
+    console.log(`Page loaded: ${router.route}!`);
+    console.log(pageState);
 
     const goToRegister = () => {
         router.push("/register");
@@ -50,7 +43,7 @@ const Login = ({ name = "Fernando"} ) =>{
           }
           .container {
             border-radius: 15px;
-            border: 10px solid #034f84;
+            border: 3px solid #034f84;
             padding: 10px;
             width: 400px;
             display: flex;
