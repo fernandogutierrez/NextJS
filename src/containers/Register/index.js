@@ -19,6 +19,7 @@ const Register = () =>{
     console.log("useEffect")
       return () =>    {
           console.log(`Page: ${router.route} was changed!`);
+          setState({});
         }
   }, []);
 
