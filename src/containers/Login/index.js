@@ -1,13 +1,35 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 import { Button, Input } from 'antd';
 import { useRouter } from 'next/router';
 
+const fetch = {
+    status: 200,
+    body: {
+        name: "Daniel",
+        age: 26
+    }
+}
 
-const Login = () =>{
+const Login = ({ name = "Fernando"} ) =>{
     const router = useRouter();
-    console.log(router); 
+    const [state, setState] = useState({ name });
+
+    useEffect(() => {
+        console.log("useEffect")
+        initialState();
+        return () =>    {
+            console.log(`Page: ${router.route} was changed!`);
+        }
+    }, []);
+
+    const initialState = async () =>{
+        setState({ name: fetch.body.name });
+    }
+    console.log(`Page: loaded ${router.route}!`);
+    console.log(state);
+
     const goToRegister = () => {
-        router.push("/register")
+        router.push("/register");
     }
 
     return (
@@ -17,7 +39,7 @@ const Login = () =>{
           <label className="element" >Password </label>
           <Input className="element" placeholder="Enter password" type="password" required/>
           <Button>LOG IN</Button>
-          <Button onClick={goToRegister}>REGISTER</Button>
+          <Button onClick={ goToRegister }>REGISTER</Button>
         <style jsx>
           {`
           #centered{
@@ -27,7 +49,7 @@ const Login = () =>{
             transform: translate(-50%, -50%);
           }
           .container {
-            border-radius: 25px;
+            border-radius: 15px;
             border: 10px solid #034f84;
             padding: 10px;
             width: 400px;
