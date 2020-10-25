@@ -16,7 +16,6 @@ const Register = () =>{
   const [state, setState] = useState();
 
   useEffect(() => {
-    console.log("useEffect")
       return () => {
           console.log(`Page: ${router.route} was changed!`);
         }
@@ -38,14 +37,16 @@ const Register = () =>{
     notification.open({
       message: 'Data inserted in FORM:',
       description:
-        `FirstName: ${state.name}
-         LastName: ${state.lastName}
-         Age: ${state.age}
-         EmailAddress: ${state.email}
-         Password: ${state.password}`,
+        `FirstName: ${values.firstName}
+         LastName: ${values.LastName}
+         Age: ${values.Age}
+         EmailAddress: ${values.EmailAddress}
+         Password: ${values.Password}`,
       icon: <SmileOutlined style={{ color: '#108ee9' }} />,
     });
   };
+
+  console.log(state);
 
   return (
     <div className="container" id="centered">
@@ -66,7 +67,7 @@ const Register = () =>{
         <Input />
       </Form.Item>
 
-      <Form.Item label="Password"name="password">
+      <Form.Item label="Password" name="Password">
         <Input.Password />
       </Form.Item>
 

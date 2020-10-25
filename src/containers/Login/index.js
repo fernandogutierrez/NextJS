@@ -9,7 +9,6 @@ const Login = () =>{
     const [state, setState] = useState();
 
     useEffect(() => {
-        console.log("useEffect")
         return () => {
             console.log(`Page: ${router.route} was changed!`);
         }
@@ -22,18 +21,15 @@ const Login = () =>{
     }
 
     const onFinish = (values) => {
-        
-        //setState({ values });
+        setState({ values });
         notification.open({
           message: 'Data inserted in FORM:',
           description:`${JSON.stringify(values)}`,
           icon: <SmileOutlined style={{ color: '#108ee9' }} />,
         });
-        
-        setState({values}, function() {
-            console.log(state)
-        });
       };
+
+    console.log(state);  
 
     return (
         <div className="container" id="centered">
