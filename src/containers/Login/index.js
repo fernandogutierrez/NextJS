@@ -1,9 +1,15 @@
-import 'antd/dist/antd.css';
 import React from 'react';
 import { Button, Input } from 'antd';
+import { useRouter } from 'next/router';
 
 
 const Login = () =>{
+    const router = useRouter();
+    console.log(router); 
+    const goToRegister = () => {
+        router.push("/register")
+    }
+
     return (
         <div className="container" id="centered">
           <label className="element">Email address </label>
@@ -11,6 +17,7 @@ const Login = () =>{
           <label className="element" >Password </label>
           <Input className="element" placeholder="Enter password" type="password" required/>
           <Button>LOG IN</Button>
+          <Button onClick={goToRegister}>REGISTER</Button>
         <style jsx>
           {`
           #centered{
@@ -19,7 +26,6 @@ const Login = () =>{
             left: 50%;
             transform: translate(-50%, -50%);
           }
-
           .container {
             border-radius: 25px;
             border: 10px solid #034f84;
