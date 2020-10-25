@@ -1,38 +1,60 @@
 import React, { useEffect,useState } from 'react';
-import { Button, Input } from 'antd';
+import { Form, Input, Button, notification } from 'antd';
 import { useRouter } from 'next/router';
+import { SmileOutlined } from '@ant-design/icons';
 
 
-const Login = ({ name = "/login" }) =>{
+const Login = () =>{
     const router = useRouter();
-    const [pageState, setPageState] = useState({ name });
+    const [state, setState] = useState();
 
     useEffect(() => {
         console.log("useEffect")
-        initialState();
-        return () =>    {
+        return () => {
             console.log(`Page: ${router.route} was changed!`);
         }
     }, []);
 
-    const initialState = async () =>{
-        setPageState({ name: router.route });
-    }
     console.log(`Page loaded: ${router.route}!`);
-    console.log(pageState);
-
+    
     const goToRegister = () => {
         router.push("/register");
     }
 
+    const onFinish = (values) => {
+        
+        //setState({ values });
+        notification.open({
+          message: 'Data inserted in FORM:',
+          description:`${JSON.stringify(values)}`,
+          icon: <SmileOutlined style={{ color: '#108ee9' }} />,
+        });
+        
+        setState({values}, function() {
+            console.log(state)
+        });
+      };
+
     return (
         <div className="container" id="centered">
-          <label className="element">Email address </label>
-          <Input className="element" placeholder="Enter email" type="email" required/>
-          <label className="element" >Password </label>
-          <Input className="element" placeholder="Enter password" type="password" required/>
-          <Button>LOG IN</Button>
-          <Button onClick={ goToRegister }>REGISTER</Button>
+            <Form onFinish={onFinish}>
+                <Form.Item label="EmailAddress" name="EmailAddress">
+                <Input />
+                </Form.Item>
+        
+                <Form.Item label="Password"name="password">
+                <Input.Password />
+                </Form.Item>
+        
+                <Form.Item>
+                <Button type="primary" htmlType="submit">
+                    Log In
+                </Button>
+                <Button htmlType="button" onClick={ goToRegister }>
+                    Register
+                </Button>
+              </Form.Item>
+            </Form>
         <style jsx>
           {`
           #centered{

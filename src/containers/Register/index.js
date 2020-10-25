@@ -13,13 +13,12 @@ const tailLayout = {
 
 const Register = () =>{   
   const router = useRouter();
-  const [state, setState] = useState( {} );
+  const [state, setState] = useState();
 
   useEffect(() => {
     console.log("useEffect")
-      return () =>    {
+      return () => {
           console.log(`Page: ${router.route} was changed!`);
-          setState({});
         }
   }, []);
 
