@@ -1,5 +1,5 @@
 import 'antd/dist/antd.css';
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
 import { useRouter } from 'next/router';
 import { SmileOutlined } from '@ant-design/icons';
 import { Form, Input, Button, Checkbox, notification } from 'antd';
@@ -11,9 +11,13 @@ const tailLayout = {
   },
 };
 
+const reducer = (state, action) => {
+  return { ...state, ...action }
+}
+
 const Register = () =>{   
   const router = useRouter();
-  const [state, setState] = useState();
+  const [state, setState] = useReducer(reducer, {});
 
   useEffect(() => {
       return () => {
@@ -26,13 +30,7 @@ const Register = () =>{
   }
 
   const onFinish = (values) => {
-    setState({ 
-        name: values.firstName,
-        lastName: values.LastName,
-        age: values.Age,
-        email: values.EmailAddress,
-        password: values.EmailAddress
-    });
+    setState({ values });
 
     notification.open({
       message: 'Data inserted in FORM:',
@@ -42,7 +40,7 @@ const Register = () =>{
          Age: ${values.Age}
          EmailAddress: ${values.EmailAddress}
          Password: ${values.Password}`,
-      icon: <SmileOutlined style={{ color: '#108ee9' }} />,
+      icon: <SmileOutlined style={{ color: '#101ee2' }} />,
     });
   };
 
