@@ -19,6 +19,10 @@ const Login = () =>{
     const goToRegister = () => {
         router.push("/register");
     }
+    
+    const goTerms = () => {
+      router.push("/terms");
+    }
 
     const onFinish = (values) => {
         setState({ values });
@@ -48,6 +52,9 @@ const Login = () =>{
                 </Button>
                 <Button htmlType="button" onClick={ goToRegister }>
                     Register
+                </Button>
+                <Button htmlType="button" onClick={ goTerms }>
+                      Terms
                 </Button>
               </Form.Item>
             </Form>
