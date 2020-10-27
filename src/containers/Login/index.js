@@ -1,12 +1,15 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
 import { Form, Input, Button, notification } from 'antd';
 import { useRouter } from 'next/router';
 import { SmileOutlined } from '@ant-design/icons';
 
+const reducer = (state, action) => {
+   return { ...state, ...action }
+}
 
 const Login = () =>{
     const router = useRouter();
-    const [state, setState] = useState();
+    const [state, setState] = useReducer(reducer, {});
 
     useEffect(() => {
         return () => {
@@ -18,6 +21,14 @@ const Login = () =>{
     
     const goToRegister = () => {
         router.push("/register");
+    }
+    
+    const goTerms = () => {
+      router.push("/terms");
+    }
+
+    const goForgotPass= () =>{
+      router.push("/forgot_pass")
     }
 
     const onFinish = (values) => {
@@ -49,26 +60,27 @@ const Login = () =>{
                 <Button htmlType="button" onClick={ goToRegister }>
                     Register
                 </Button>
+                <Button htmlType="button" onClick={ goTerms }>
+                      Terms
+                </Button>
+
+                <Button htmlType="button" onClick={ goForgotPass }>
+                      Forgot Password?
+                </Button>
               </Form.Item>
             </Form>
         <style jsx>
           {`
-          #centered{
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-          }
-          .container {
-            border-radius: 15px;
-            border: 3px solid #034f84;
-            padding: 10px;
-            width: 400px;
-            display: flex;
-            flex-direction: column;
-            align-items: left;
-          }
-        `}
+            .container {
+              border-radius: 15px;
+              border: 3px solid #034f84;
+              padding: 10px;
+              width: 400px;
+              display: flex;
+              flex-direction: column;
+              align-items: left;
+            }
+          `}
         </style>
        </div>
     )
