@@ -53,22 +53,16 @@ const Login = () =>{
             </Form>
         <style jsx>
           {`
-          #centered{
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-          }
-          .container {
-            border-radius: 15px;
-            border: 3px solid #034f84;
-            padding: 10px;
-            width: 400px;
-            display: flex;
-            flex-direction: column;
-            align-items: left;
-          }
-        `}
+            .container {
+              border-radius: 15px;
+              border: 3px solid #034f84;
+              padding: 10px;
+              width: 400px;
+              display: flex;
+              flex-direction: column;
+              align-items: left;
+            }
+          `}
         </style>
        </div>
     )
