@@ -6,8 +6,6 @@ const Terms = () =>{
         
         <p>
            Welcome to school page!
-        </p>
-        
         These terms and conditions outline the rules and regulations for the use of Atom's Website, located at http://localhost:3000.
         By accessing this website we assume you accept these terms and conditions. Do not continue to use school page if you do not agree to take all of the terms and conditions stated on this page.
         
@@ -20,6 +18,7 @@ const Terms = () =>{
         License
         
         Unless otherwise stated, Atom and/or its licensors own the intellectual property rights for all material on school page. All intellectual property rights are reserved. You may access this from school page for your own personal use subjected to restrictions set in these terms and conditions.
+        </p>
         </h4> 
          
       </div>)

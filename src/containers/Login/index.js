@@ -24,6 +24,10 @@ const Login = () =>{
       router.push("/terms");
     }
 
+    const goForgotPass= () =>{
+      router.push("/forgot_pass")
+    }
+
     const onFinish = (values) => {
         setState({ values });
         notification.open({
@@ -55,6 +59,10 @@ const Login = () =>{
                 </Button>
                 <Button htmlType="button" onClick={ goTerms }>
                       Terms
+                </Button>
+
+                <Button htmlType="button" onClick={ goForgotPass }>
+                      Forgot Password?
                 </Button>
               </Form.Item>
             </Form>
