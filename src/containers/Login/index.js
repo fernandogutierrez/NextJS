@@ -1,12 +1,15 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
 import { Form, Input, Button, notification } from 'antd';
 import { useRouter } from 'next/router';
 import { SmileOutlined } from '@ant-design/icons';
 
+const reducer = (state, action) => {
+   return { ...state, ...action }
+}
 
 const Login = () =>{
     const router = useRouter();
-    const [state, setState] = useState();
+    const [state, setState] = useReducer(reducer, {});
 
     useEffect(() => {
         return () => {
