@@ -1,8 +1,8 @@
 import 'antd/dist/antd.css';
-import React, { useEffect, useState, useReducer } from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { SmileOutlined } from '@ant-design/icons';
-import { Form, Input, Button, Checkbox, notification } from 'antd';
+import { Form, Input, Button, Checkbox } from 'antd';
+import { useSelector, useDispatch } from "react-redux";
 
 const tailLayout = {
   wrapperCol: {
@@ -11,13 +11,10 @@ const tailLayout = {
   },
 };
 
-const reducer = (state, action) => {
-  return { ...state, ...action }
-}
-
 const Register = () =>{   
   const router = useRouter();
-  const [state, setState] = useReducer(reducer, {});
+  const { register } = useSelector((store) =>{ return store });
+  const dispatch = useDispatch()
 
   useEffect(() => {
       return () => {
@@ -30,21 +27,15 @@ const Register = () =>{
   }
 
   const onFinish = (values) => {
-    setState({ values });
-
-    notification.open({
-      message: 'Data inserted in FORM:',
-      description:
-        `FirstName: ${values.firstName}
-         LastName: ${values.LastName}
-         Age: ${values.Age}
-         EmailAddress: ${values.EmailAddress}
-         Password: ${values.Password}`,
-      icon: <SmileOutlined style={{ color: '#101ee2' }} />,
-    });
+    dispatch({ type: "REGISTER_USER_SUCCESS",
+               firstName: values.firstName,
+               lastName: values.LastName,
+               age: values.Age,
+               email: values.EmailAddress,
+               password: values.Password });
   };
-
-  console.log(state);
+  
+  console.log(register);
 
   return (
     <div className="container" id="centered">

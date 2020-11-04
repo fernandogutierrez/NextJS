@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useReducer } from 'react';
 import { Form, Input, Button, notification } from 'antd';
 import { useRouter } from 'next/router';
-import { SmileOutlined } from '@ant-design/icons';
+import { useSelector, useDispatch } from "react-redux";
 
 const reducer = (state, action) => {
    return { ...state, ...action }
@@ -9,7 +9,8 @@ const reducer = (state, action) => {
 
 const Login = () =>{
     const router = useRouter();
-    const [state, setState] = useReducer(reducer, {});
+    const { login } = useSelector((store) =>{ return store });
+    const dispatch = useDispatch()
 
     useEffect(() => {
         return () => {
@@ -32,20 +33,16 @@ const Login = () =>{
     }
 
     const onFinish = (values) => {
-        setState({ values });
-        notification.open({
-          message: 'Data inserted in FORM:',
-          description:`${JSON.stringify(values)}`,
-          icon: <SmileOutlined style={{ color: '#108ee9' }} />,
-        });
-      };
-
-    console.log(state);  
+       dispatch({ type:"LOGIN_USER_SUCCESS", 
+                  email: values.email,
+                  password: values.password})
+    };
+    console.log(login) 
 
     return (
         <div className="container" id="centered">
             <Form onFinish={onFinish}>
-                <Form.Item label="EmailAddress" name="EmailAddress">
+                <Form.Item label="Email" name="email">
                 <Input />
                 </Form.Item>
         
