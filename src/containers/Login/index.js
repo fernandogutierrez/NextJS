@@ -2,6 +2,7 @@ import React, { useEffect, useState, useReducer } from 'react';
 import { Form, Input, Button, notification } from 'antd';
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from "react-redux";
+import { LOGIN_USER_SUCCESS } from "../../redux/constants"
 
 const reducer = (state, action) => {
    return { ...state, ...action }
@@ -33,7 +34,7 @@ const Login = () =>{
     }
 
     const onFinish = (values) => {
-       dispatch({ type:"LOGIN_USER_SUCCESS", 
+       dispatch({ type:LOGIN_USER_SUCCESS, 
                   email: values.email,
                   password: values.password})
     };

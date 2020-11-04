@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { useSelector, useDispatch } from "react-redux";
+import { REGISTER_USER_SUCCESS } from "../../redux/constants"
 
 const tailLayout = {
   wrapperCol: {
@@ -27,7 +28,7 @@ const Register = () =>{
   }
 
   const onFinish = (values) => {
-    dispatch({ type: "REGISTER_USER_SUCCESS",
+    dispatch({ type: REGISTER_USER_SUCCESS,
                firstName: values.firstName,
                lastName: values.LastName,
                age: values.Age,
